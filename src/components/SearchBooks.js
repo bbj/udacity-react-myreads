@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { search } from "../BooksAPI";
 import Book from "./Book";
 
 const SearchBooks = ({ books, onUpdateShelf }) => {
-    // Returns a function that lets you navigate programmatically
-    const navigate = useNavigate();
+
     const [query, setQuery] = useState("");
     const [searchedBooks, setSearchedBooks] = useState([]);
 
@@ -36,7 +35,7 @@ const SearchBooks = ({ books, onUpdateShelf }) => {
     return (
         <div className="search-books">
             <div className="search-books-bar">
-                <a className="close-search" onClick={() => navigate('/')}>Close</a>
+                <Link className="close-search" to="/">Close</Link>
                 <div className="search-books-input-wrapper">
                     <input
                         type="text"
