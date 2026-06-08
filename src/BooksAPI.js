@@ -1,9 +1,25 @@
 const api = "https://reactnd-books-api.udacity.com";
 
+/*
+  At first visit, generate a random token and save it to localStorage.
+  The token is used to authenticate the user.
+*/
 let token = localStorage.token;
+if (!token) {
+  token = localStorage.token = Math.random().toString(36).substr(-8);
+}
 
-if (!token) token = localStorage.token = Math.random().toString(36).substr(-8);
+/*
+  The headers object is used to authenticate the user.
+  It is used in all the fetch requests to the API.
+  Authorization header is used to pass the token to the API.
 
+  API Isolation:
+    - The token is passed in the Authorization header on every HTTP request.
+    - The Udacity mock backend uses this header value to segment data.
+    - Each distinct token gets its own virtual database instance.
+    - Your book selections and shelf assignments are saved separately from other users.
+*/
 const headers = {
   Accept: "application/json",
   Authorization: token,
